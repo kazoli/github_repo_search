@@ -4,6 +4,7 @@ import { getSearch } from '../app/search/searchService';
 import { searchAction } from '../app/search/searchSlice';
 import { searchSettings } from '../app/search/searchInitialStates';
 import { searchBuildFullUrl } from '../app/search/searchMiddleware';
+import { SearchContextProvider } from '../contexts/SearchContext';
 import SearchValidation from '../components/search/SearchValidation';
 import SearchBar from '../components/search/SearchBar';
 import DefaultLayout from '../components/layout/DefaultLayout';
@@ -44,23 +45,22 @@ function Search() {
 
   return (
     <DefaultLayout>
-      <div className="search">
-        {search.status === 'loading' && <Spinner />}
-        <SearchBar
-          formParams={search.formParams}
-          formErrors={search.formErrors}
-        />
-        <SearchResult
-          frame={{
-            sort: search.queryParams.sort,
-            order: search.queryParams.order,
-            page: search.queryParams.page,
-            countResults: search.countResults,
-            countPages: search.countPages
-          }}
-          results={search.data}
-        />
-      </div>
+      <SearchContextProvider value={{ search: search }}>
+        <div className="search">
+          {search.status === 'loading' && <Spinner />}
+          <SearchBar />
+          <SearchResult
+            frame={{
+              sort: search.queryParams.sort,
+              order: search.queryParams.order,
+              page: search.queryParams.page,
+              countResults: search.countResults,
+              countPages: search.countPages
+            }}
+            results={search.data}
+          />
+        </div>
+      </SearchContextProvider>
     </DefaultLayout>
   );
 }

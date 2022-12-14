@@ -53,7 +53,7 @@ export type tSearchAdvancedState = {
 export type tSearchReduxState = {
   status: 'idle' | 'loading' | 'failed';
   message: string;
-  action: false | 'validation' | 'request' ;
+  action: false | 'validation' | 'request';
   countResults: number;
   countPages: number;
   data: tSearchResultData[];

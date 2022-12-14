@@ -6,20 +6,16 @@ import {
 import { useAppDispatch } from '../../app/general/hooks';
 import { searchSettings } from '../../app/search/searchInitialStates';
 import { searchManageTag, searchSetParam } from '../../app/search/searchSlice';
-import { tSearchReduxState } from '../../app/search/searchTypes';
+import { useSearchContext } from '../../contexts/SearchContext';
 import Input from '../form/Input';
 import Tags from '../general/Tags';
 import SearchButtonBlock from './SearchButtonBlock';
 import SearchCreatedBlock from './SearchCreatedBlock';
 import SearchStarSizeBlock from './SearchStarSizeBlock';
 
-type tProps = {
-  formParams: tSearchReduxState['formParams'];
-  formErrors: tSearchReduxState['formErrors'];
-};
-
-function SearchAdvanced(props: tProps) {
+function SearchAdvanced() {
   const dispatch = useAppDispatch();
+  const { search } = useSearchContext();
 
   return (
     <>
@@ -32,11 +28,11 @@ function SearchAdvanced(props: tProps) {
               label="Username"
               id="user"
               placeholder="Can be empty or 3 characters at least"
-              value={props.formParams.user}
+              value={search.formParams.user}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'user', value: value }))
               }
-              error={props.formErrors.user}
+              error={search.formErrors.user}
             />
           </div>
           <div className="form-element">
@@ -46,11 +42,11 @@ function SearchAdvanced(props: tProps) {
               label="Organization"
               id="org"
               placeholder="Can be empty or 3 characters at least"
-              value={props.formParams.org}
+              value={search.formParams.org}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'org', value: value }))
               }
-              error={props.formErrors.org}
+              error={search.formErrors.org}
             />
           </div>
         </div>
@@ -64,17 +60,17 @@ function SearchAdvanced(props: tProps) {
               placeholder={`Add a tag after ${
                 searchSettings.validationDelayMs / 1000
               }-second stop in type`}
-              value={props.formParams.languageDraft}
+              value={search.formParams.languageDraft}
               action={(value) =>
                 dispatch(
                   searchSetParam({ param: 'languageDraft', value: value })
                 )
               }
-              error={props.formErrors.languageDraft}
+              error={search.formErrors.languageDraft}
             />
             <Tags
               tagMaxVisible={searchSettings.tagMaxVisible}
-              tags={props.formParams.language}
+              tags={search.formParams.language}
               removeTag={(value) =>
                 dispatch(
                   searchManageTag({
@@ -95,15 +91,15 @@ function SearchAdvanced(props: tProps) {
               placeholder={`Add a tag after ${
                 searchSettings.validationDelayMs / 1000
               }-second stop in type`}
-              value={props.formParams.topicDraft}
+              value={search.formParams.topicDraft}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'topicDraft', value: value }))
               }
-              error={props.formErrors.topicDraft}
+              error={search.formErrors.topicDraft}
             />
             <Tags
               tagMaxVisible={searchSettings.tagMaxVisible}
-              tags={props.formParams.topic}
+              tags={search.formParams.topic}
               removeTag={(value) =>
                 dispatch(
                   searchManageTag({
@@ -126,8 +122,8 @@ function SearchAdvanced(props: tProps) {
             </label>
             <SearchStarSizeBlock
               type="stars"
-              data={props.formParams.stars}
-              formErrors={props.formErrors}
+              data={search.formParams.stars}
+              formErrors={search.formErrors}
             />
           </div>
           <div className="form-element highlighted">
@@ -137,8 +133,8 @@ function SearchAdvanced(props: tProps) {
             </label>
             <SearchStarSizeBlock
               type="size"
-              data={props.formParams.size}
-              formErrors={props.formErrors}
+              data={search.formParams.size}
+              formErrors={search.formErrors}
             />
           </div>
         </div>
@@ -148,10 +144,7 @@ function SearchAdvanced(props: tProps) {
               <RiCalendar2Fill />
               <span>Created</span>
             </label>
-            <SearchCreatedBlock
-              formParams={props.formParams}
-              formErrors={props.formErrors}
-            />
+            <SearchCreatedBlock />
           </div>
           <SearchButtonBlock />
         </div>

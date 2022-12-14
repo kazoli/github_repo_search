@@ -1,21 +1,17 @@
-import { tSearchReduxState } from '../../app/search/searchTypes';
 import { useAppDispatch } from '../../app/general/hooks';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
+import { searchSetParam } from '../../app/search/searchSlice';
+import { useSearchContext } from '../../contexts/SearchContext';
 import Button from '../form/Button';
 import Checkable from '../form/Checkable';
 import Input from '../form/Input';
 import ErrorMessage from '../general/ErrorMessage';
 import SearchAdvanced from './SearchAdvanced';
 import SearchButtonBlock from './SearchButtonBlock';
-import { searchSetParam } from '../../app/search/searchSlice';
 
-type tProps = {
-  formParams: tSearchReduxState['formParams'];
-  formErrors: tSearchReduxState['formErrors'];
-};
-
-function SearchBar(props: tProps) {
+function SearchBar() {
   const dispatch = useAppDispatch();
+  const { search } = useSearchContext();
 
   return (
     <section className="search-bar">
@@ -23,7 +19,7 @@ function SearchBar(props: tProps) {
         <div className="search-block">
           <div
             className={`form-element ${
-              props.formParams.advanced ? '' : 'expand'
+              search.formParams.advanced ? '' : 'expand'
             }`}
           >
             <Input
@@ -32,13 +28,13 @@ function SearchBar(props: tProps) {
               label="Search by"
               id="keyword"
               placeholder="Minimum 3 characters need to enter"
-              value={props.formParams.keyword}
+              value={search.formParams.keyword}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'keyword', value: value }))
               }
               error={
-                props.formParams.keywordErrorShow
-                  ? props.formErrors.keyword
+                search.formParams.keywordErrorShow
+                  ? search.formErrors.keyword
                   : ''
               }
             />
@@ -49,7 +45,7 @@ function SearchBar(props: tProps) {
               <div className="form-checkable-block">
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={props.formParams.inName}
+                  checked={search.formParams.inName}
                   label="Name"
                   type="checkbox"
                   id="inName"
@@ -57,14 +53,14 @@ function SearchBar(props: tProps) {
                     dispatch(
                       searchSetParam({
                         param: 'inName',
-                        value: !props.formParams.inName
+                        value: !search.formParams.inName
                       })
                     )
                   }
                 />
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={props.formParams.inDescription}
+                  checked={search.formParams.inDescription}
                   label="Description"
                   type="checkbox"
                   id="inDescription"
@@ -72,14 +68,14 @@ function SearchBar(props: tProps) {
                     dispatch(
                       searchSetParam({
                         param: 'inDescription',
-                        value: !props.formParams.inDescription
+                        value: !search.formParams.inDescription
                       })
                     )
                   }
                 />
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={props.formParams.inReadme}
+                  checked={search.formParams.inReadme}
                   label="Readme"
                   type="checkbox"
                   id="inReadme"
@@ -87,25 +83,23 @@ function SearchBar(props: tProps) {
                     dispatch(
                       searchSetParam({
                         param: 'inReadme',
-                        value: !props.formParams.inReadme
+                        value: !search.formParams.inReadme
                       })
                     )
                   }
                 />
               </div>
-              <ErrorMessage text={props.formErrors.searchIn} extraClass="" />
+              <ErrorMessage text={search.formErrors.searchIn} extraClass="" />
             </div>
           </div>
         </div>
         <div className="search-block">
-          {!props.formParams.advanced && (
-            <SearchButtonBlock />
-          )}
+          {!search.formParams.advanced && <SearchButtonBlock />}
           <div className="form-element search-advanced">
             <Button
               wrapperClass="button click"
               icon={
-                props.formParams.advanced ? (
+                search.formParams.advanced ? (
                   <RiArrowUpSLine className="icon" />
                 ) : (
                   <RiArrowDownSLine className="icon" />
@@ -116,7 +110,7 @@ function SearchBar(props: tProps) {
                 dispatch(
                   searchSetParam({
                     param: 'advanced',
-                    value: !props.formParams.advanced
+                    value: !search.formParams.advanced
                   })
                 )
               }
@@ -124,12 +118,7 @@ function SearchBar(props: tProps) {
           </div>
         </div>
       </div>
-      {props.formParams.advanced && (
-        <SearchAdvanced
-          formParams={props.formParams}
-          formErrors={props.formErrors}
-        />
-      )}
+      {search.formParams.advanced && <SearchAdvanced />}
     </section>
   );
 }
