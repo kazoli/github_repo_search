@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/general/hooks';
 import { getSearch } from '../app/search/searchService';
 import { searchAction } from '../app/search/searchSlice';
@@ -43,22 +43,38 @@ function Search() {
     }
   }, [dispatch, search.action, search.queryParams]);
 
+  const searchResult = useMemo(
+    () => (
+      <SearchResult
+        frame={{
+          sort: search.queryParams.sort,
+          order: search.queryParams.order,
+          page: search.queryParams.page,
+          countResults: search.countResults,
+          countPages: search.countPages
+        }}
+        results={search.data}
+      />
+    ),
+    [
+      search.queryParams.sort,
+      search.queryParams.order,
+      search.queryParams.page,
+      search.countResults,
+      search.countPages,
+      search.data
+    ]
+  );
+
   return (
     <DefaultLayout>
-      <SearchContextProvider value={{ search: search }}>
+      <SearchContextProvider
+        value={{ formParams: search.formParams, formErrors: search.formErrors }}
+      >
         <div className="search">
           {search.status === 'loading' && <Spinner />}
           <SearchBar />
-          <SearchResult
-            frame={{
-              sort: search.queryParams.sort,
-              order: search.queryParams.order,
-              page: search.queryParams.page,
-              countResults: search.countResults,
-              countPages: search.countPages
-            }}
-            results={search.data}
-          />
+          {searchResult}
         </div>
       </SearchContextProvider>
     </DefaultLayout>

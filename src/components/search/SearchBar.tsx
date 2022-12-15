@@ -11,7 +11,7 @@ import SearchButtonBlock from './SearchButtonBlock';
 
 function SearchBar() {
   const dispatch = useAppDispatch();
-  const { search } = useSearchContext();
+  const { formParams, formErrors } = useSearchContext();
 
   return (
     <section className="search-bar">
@@ -19,7 +19,7 @@ function SearchBar() {
         <div className="search-block">
           <div
             className={`form-element ${
-              search.formParams.advanced ? '' : 'expand'
+              formParams.advanced ? '' : 'expand'
             }`}
           >
             <Input
@@ -28,13 +28,13 @@ function SearchBar() {
               label="Search by"
               id="keyword"
               placeholder="Minimum 3 characters need to enter"
-              value={search.formParams.keyword}
+              value={formParams.keyword}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'keyword', value: value }))
               }
               error={
-                search.formParams.keywordErrorShow
-                  ? search.formErrors.keyword
+                formParams.keywordErrorShow
+                  ? formErrors.keyword
                   : ''
               }
             />
@@ -45,7 +45,7 @@ function SearchBar() {
               <div className="form-checkable-block">
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={search.formParams.inName}
+                  checked={formParams.inName}
                   label="Name"
                   type="checkbox"
                   id="inName"
@@ -53,14 +53,14 @@ function SearchBar() {
                     dispatch(
                       searchSetParam({
                         param: 'inName',
-                        value: !search.formParams.inName
+                        value: !formParams.inName
                       })
                     )
                   }
                 />
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={search.formParams.inDescription}
+                  checked={formParams.inDescription}
                   label="Description"
                   type="checkbox"
                   id="inDescription"
@@ -68,14 +68,14 @@ function SearchBar() {
                     dispatch(
                       searchSetParam({
                         param: 'inDescription',
-                        value: !search.formParams.inDescription
+                        value: !formParams.inDescription
                       })
                     )
                   }
                 />
                 <Checkable
                   wrapperClass="form-checkable"
-                  checked={search.formParams.inReadme}
+                  checked={formParams.inReadme}
                   label="Readme"
                   type="checkbox"
                   id="inReadme"
@@ -83,23 +83,23 @@ function SearchBar() {
                     dispatch(
                       searchSetParam({
                         param: 'inReadme',
-                        value: !search.formParams.inReadme
+                        value: !formParams.inReadme
                       })
                     )
                   }
                 />
               </div>
-              <ErrorMessage text={search.formErrors.searchIn} extraClass="" />
+              <ErrorMessage text={formErrors.searchIn} extraClass="" />
             </div>
           </div>
         </div>
         <div className="search-block">
-          {!search.formParams.advanced && <SearchButtonBlock />}
+          {!formParams.advanced && <SearchButtonBlock />}
           <div className="form-element search-advanced">
             <Button
               wrapperClass="button click"
               icon={
-                search.formParams.advanced ? (
+                formParams.advanced ? (
                   <RiArrowUpSLine className="icon" />
                 ) : (
                   <RiArrowDownSLine className="icon" />
@@ -110,7 +110,7 @@ function SearchBar() {
                 dispatch(
                   searchSetParam({
                     param: 'advanced',
-                    value: !search.formParams.advanced
+                    value: !formParams.advanced
                   })
                 )
               }
@@ -118,7 +118,7 @@ function SearchBar() {
           </div>
         </div>
       </div>
-      {search.formParams.advanced && <SearchAdvanced />}
+      {formParams.advanced && <SearchAdvanced />}
     </section>
   );
 }

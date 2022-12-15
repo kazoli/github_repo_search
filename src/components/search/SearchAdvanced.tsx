@@ -15,7 +15,7 @@ import SearchStarSizeBlock from './SearchStarSizeBlock';
 
 function SearchAdvanced() {
   const dispatch = useAppDispatch();
-  const { search } = useSearchContext();
+  const { formParams, formErrors } = useSearchContext();
 
   return (
     <>
@@ -28,11 +28,11 @@ function SearchAdvanced() {
               label="Username"
               id="user"
               placeholder="Can be empty or 3 characters at least"
-              value={search.formParams.user}
+              value={formParams.user}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'user', value: value }))
               }
-              error={search.formErrors.user}
+              error={formErrors.user}
             />
           </div>
           <div className="form-element">
@@ -42,11 +42,11 @@ function SearchAdvanced() {
               label="Organization"
               id="org"
               placeholder="Can be empty or 3 characters at least"
-              value={search.formParams.org}
+              value={formParams.org}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'org', value: value }))
               }
-              error={search.formErrors.org}
+              error={formErrors.org}
             />
           </div>
         </div>
@@ -60,17 +60,17 @@ function SearchAdvanced() {
               placeholder={`Add a tag after ${
                 searchSettings.validationDelayMs / 1000
               }-second stop in type`}
-              value={search.formParams.languageDraft}
+              value={formParams.languageDraft}
               action={(value) =>
                 dispatch(
                   searchSetParam({ param: 'languageDraft', value: value })
                 )
               }
-              error={search.formErrors.languageDraft}
+              error={formErrors.languageDraft}
             />
             <Tags
               tagMaxVisible={searchSettings.tagMaxVisible}
-              tags={search.formParams.language}
+              tags={formParams.language}
               removeTag={(value) =>
                 dispatch(
                   searchManageTag({
@@ -91,15 +91,15 @@ function SearchAdvanced() {
               placeholder={`Add a tag after ${
                 searchSettings.validationDelayMs / 1000
               }-second stop in type`}
-              value={search.formParams.topicDraft}
+              value={formParams.topicDraft}
               action={(value) =>
                 dispatch(searchSetParam({ param: 'topicDraft', value: value }))
               }
-              error={search.formErrors.topicDraft}
+              error={formErrors.topicDraft}
             />
             <Tags
               tagMaxVisible={searchSettings.tagMaxVisible}
-              tags={search.formParams.topic}
+              tags={formParams.topic}
               removeTag={(value) =>
                 dispatch(
                   searchManageTag({
@@ -122,8 +122,8 @@ function SearchAdvanced() {
             </label>
             <SearchStarSizeBlock
               type="stars"
-              data={search.formParams.stars}
-              formErrors={search.formErrors}
+              data={formParams.stars}
+              formErrors={formErrors}
             />
           </div>
           <div className="form-element highlighted">
@@ -133,8 +133,8 @@ function SearchAdvanced() {
             </label>
             <SearchStarSizeBlock
               type="size"
-              data={search.formParams.size}
-              formErrors={search.formErrors}
+              data={formParams.size}
+              formErrors={formErrors}
             />
           </div>
         </div>

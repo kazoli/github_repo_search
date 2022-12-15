@@ -4,7 +4,8 @@ import { initialSearchReduxState } from '../app/search/searchInitialStates';
 
 // Type of search context
 type tSearchContext = {
-  search: tSearchReduxState;
+  formParams: tSearchReduxState['formParams'];
+  formErrors: tSearchReduxState['formErrors'];
 };
 
 // Type of props
@@ -15,11 +16,17 @@ type tProps = {
 
 // Initial state of search context
 const searchContextInitialState: tSearchContext = {
-  search: initialSearchReduxState
+  formParams: initialSearchReduxState['formParams'],
+  formErrors: initialSearchReduxState['formErrors']
 };
 
 // Create context
 const SearchContext = createContext<tSearchContext>(searchContextInitialState);
+
+// Context custom hook
+function useSearchContext() {
+  return useContext(SearchContext);
+}
 
 // Context provider
 function SearchContextProvider(props: tProps) {
@@ -28,11 +35,6 @@ function SearchContextProvider(props: tProps) {
       {props.children}
     </SearchContext.Provider>
   );
-}
-
-// Context custom hook
-function useSearchContext() {
-  return useContext(SearchContext);
 }
 
 export { SearchContext, SearchContextProvider, useSearchContext };
