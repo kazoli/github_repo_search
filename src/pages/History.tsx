@@ -17,7 +17,8 @@ function History() {
 
   const toogle = () => {
     setShowMenu(!showMenu);
-    scrollToElement('.search-history-query-list li:first-of-type');
+    if (showMenu)
+      scrollToElement('.search-history-query-list li:first-of-type');
   };
 
   return (
