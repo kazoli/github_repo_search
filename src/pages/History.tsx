@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/general/hooks';
 import { searchSelectHistory } from '../app/search/searchSlice';
+import { scrollToElement } from '../app/general/useful';
 import DefaultLayout from '../components/layout/DefaultLayout';
 import SideMenuToogle from '../components/general/SideMenuToogle';
 import SearchResult from '../components/search/SearchResult';
@@ -14,6 +15,11 @@ function History() {
   const search = useAppSelector((state) => state.search);
   const [showMenu, setShowMenu] = useState(false);
 
+  const toogle = () => {
+    setShowMenu(!showMenu);
+    scrollToElement('.search-history-query-list li:first-of-type');
+  };
+
   return (
     <DefaultLayout>
       <div className="search-history">
@@ -23,7 +29,7 @@ function History() {
               hideText="Show queries"
               showText="Hide queries"
               show={showMenu}
-              action={() => setShowMenu(!showMenu)}
+              action={toogle}
             />
             <div
               className={`search-history-query-wrapper ${

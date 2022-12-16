@@ -15,37 +15,37 @@ type tOption = {
 
 function SearchCreatedBlock() {
   const dispatch = useAppDispatch();
-  const { formParams, formErrors } = useSearchContext();
+  const search = useSearchContext();
 
   const options: tOption[] = [
     {
       id: 'createdBefore',
       label: 'Before',
-      checked: formParams.created.range === '<',
+      checked: search.formParams.created.range === '<',
       value: '<'
     },
     {
       id: 'createdOnBefore',
       label: 'On or before',
-      checked: formParams.created.range === '<=',
+      checked: search.formParams.created.range === '<=',
       value: '<='
     },
     {
       id: 'createdAfter',
       label: 'After',
-      checked: formParams.created.range === '>',
+      checked: search.formParams.created.range === '>',
       value: '>'
     },
     {
       id: 'createdOnAfter',
       label: 'On or after',
-      checked: formParams.created.range === '>=',
+      checked: search.formParams.created.range === '>=',
       value: '>='
     },
     {
       id: 'createdBetween',
       label: 'Between',
-      checked: formParams.created.range === '..',
+      checked: search.formParams.created.range === '..',
       value: '..'
     }
   ];
@@ -66,9 +66,9 @@ function SearchCreatedBlock() {
       <div className="form-element-multiple">
         <div>
           <DatePicker
-            label={formParams.created.range === '..' ? 'From' : 'Date'}
+            label={search.formParams.created.range === '..' ? 'From' : 'Date'}
             format="dd.MM.y"
-            value={formParams.created.min}
+            value={search.formParams.created.min}
             action={(value) =>
               dispatch(
                 searchSetParam({
@@ -78,14 +78,14 @@ function SearchCreatedBlock() {
               )
             }
           />
-          <ErrorMessage text={formErrors.createdMin} extraClass="" />
+          <ErrorMessage text={search.formErrors.createdMin} extraClass="" />
         </div>
-        {formParams.created.range === '..' && (
+        {search.formParams.created.range === '..' && (
           <div>
             <DatePicker
               label="To"
               format="dd.MM.y"
-              value={formParams.created.max}
+              value={search.formParams.created.max}
               action={(value) =>
                 dispatch(
                   searchSetParam({
@@ -95,7 +95,7 @@ function SearchCreatedBlock() {
                 )
               }
             />
-            <ErrorMessage text={formErrors.createdMax} extraClass="" />
+            <ErrorMessage text={search.formErrors.createdMax} extraClass="" />
           </div>
         )}
       </div>

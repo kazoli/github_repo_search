@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { formatDate } from '../../app/search/searchMiddleware';
+import { formatDate } from '../../app/general/useful';
 import ReactDatePicker from 'react-date-picker';
 
 type tProps = {

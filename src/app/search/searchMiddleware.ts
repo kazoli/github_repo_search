@@ -1,7 +1,7 @@
-import moment from 'moment';
-import validation from '../general/validation';
 import { gitRepoSearchUrl, searchSettings } from './searchInitialStates';
 import { tSearchReduxState } from './searchTypes';
+import { scrollToElement } from '../general/useful';
+import validation from '../general/validation';
 
 // input validation
 export const searchValidateInput = async (required: boolean, value: string) => {
@@ -162,13 +162,7 @@ export const searchValidateAll = (
         formErrors.createdMin ||
         formErrors.createdMax))
   ) {
-    const error = document.querySelector('.error-message:first-of-type');
-    if (error) {
-      error.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }
+    scrollToElement('.error-message:first-of-type');
     return true;
   } else {
     return false;
@@ -268,11 +262,4 @@ export const searchBuildFullUrl = (
   fullUrl += `&page=${queryParams.page}`;
 
   return fullUrl;
-};
-
-// create formatted date string
-export const formatDate = (dateStyle: string, date: string | Date) => {
-  const d: Date = typeof date === 'string' ? new Date(date) : date;
-  const dateFormatted = moment(d).format(dateStyle);
-  return dateFormatted;
 };

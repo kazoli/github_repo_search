@@ -113,6 +113,7 @@ main {
 /* SIDE MENU TOOGLE START*/
 .side-menu-toogle {
   font-size: 1rem;
+  border: 3px solid #66bbff;
   background: #66bbff;
   color: #ffffff;
   border-radius: 5px;

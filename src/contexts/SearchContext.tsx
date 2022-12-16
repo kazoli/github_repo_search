@@ -21,7 +21,7 @@ const searchContextInitialState: tSearchContext = {
 };
 
 // Create context
-const SearchContext = createContext<tSearchContext>(searchContextInitialState);
+const SearchContext = createContext(searchContextInitialState);
 
 // Context custom hook
 function useSearchContext() {
