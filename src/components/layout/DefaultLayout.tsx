@@ -1,8 +1,6 @@
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from './Header';
 import Footer from './Footer';
-import JumpTop from '../general/JumpTop';
 
 type tProps = {
   children: JSX.Element;
@@ -14,8 +12,6 @@ function DefaultLayout(props: tProps) {
       <Header />
       <main>{props.children}</main>
       <Footer />
-      <JumpTop />
-      <ToastContainer autoClose={5000} />
     </>
   );
 }
