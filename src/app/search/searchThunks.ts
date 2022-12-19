@@ -1,7 +1,7 @@
 import { tSearchResultData } from './searchTypes';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { errorHandler } from '../general/error';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 // get search data from github
 export const getSearch = createAsyncThunk<
