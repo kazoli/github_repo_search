@@ -6,18 +6,18 @@ export const errorHandler = (err: unknown): string => {
   let message = '';
   if (axios.isAxiosError(error)) {
     // axios error
-    if (!error?.response) {
-      message = 'No server response';
-    } else {
+    if (error.response) {
+      // customizable messages according to response status of error
       switch (error.response.status) {
         case 500:
-          //show error on console
           console.error(error.response.data.message);
           message = 'Internal Server Error';
           break;
         default:
           message = error.response.data.message;
       }
+    } else {
+      message = error.message;
     }
   } else {
     // stock error
