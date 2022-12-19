@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getSearch } from './searchService';
+import { getSearch } from './searchThunks';
 import { tSearchReduxState } from './searchTypes';
 import { initialSearchReduxState } from './searchInitialStates';
-import { searchBuildPartUrl, searchValidateAll } from './searchMiddleware';
+import { searchBuildPartUrl } from './searchMiddleware';
 
 const searchSlice = createSlice({
   name: 'search',
@@ -57,30 +57,19 @@ const searchSlice = createSlice({
         ].filter((tag) => tag !== action.payload.value);
       }
     },
-    searchAction: (
-      state,
-      action: PayloadAction<tSearchReduxState['action']>
-    ) => {
-      switch (action.payload) {
-        case 'validation':
-          state.status = 'loading';
-          state.formParams.keywordErrorShow = true;
-          state.action = 'validation';
-          break;
-        case 'request':
-          // validate all before real request call triggering
-          if (searchValidateAll(state.formParams, state.formErrors)) {
-            state.status = 'idle';
-            state.action = false;
-          } else {
-            state.queryParams.baseUrl = searchBuildPartUrl(state.formParams);
-            state.queryParams.page = '1';
-            state.action = 'request';
-          }
-          break;
-        default:
-          state.action = false;
-      }
+    searchResetAction: (state, action: PayloadAction<boolean>) => {
+      if (action.payload) state.status = 'idle';
+      state.action = false;
+    },
+    searchValidation: (state) => {
+      state.status = 'loading';
+      state.formParams.keywordErrorShow = true;
+      state.action = 'validation';
+    },
+    searchBuildUrl: (state) => {
+      state.queryParams.baseUrl = searchBuildPartUrl(state.formParams);
+      state.queryParams.page = '1';
+      state.action = 'request';
     },
     searchReset: (state) => {
       state.countResults = 0;
@@ -152,7 +141,9 @@ export const {
   searchSetParam,
   searchSetError,
   searchManageTag,
-  searchAction,
+  searchResetAction,
+  searchValidation,
+  searchBuildUrl,
   searchReset,
   searchSetQueryParams,
   searchSelectHistory

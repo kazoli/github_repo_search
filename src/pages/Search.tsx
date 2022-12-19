@@ -1,9 +1,12 @@
 import { useEffect, useMemo } from 'react';
 import { useAppDispatch, useAppSelector } from '../app/general/hooks';
-import { getSearch } from '../app/search/searchService';
-import { searchAction } from '../app/search/searchSlice';
+import { getSearch } from '../app/search/searchThunks';
+import { searchBuildUrl, searchResetAction } from '../app/search/searchSlice';
 import { searchSettings } from '../app/search/searchInitialStates';
-import { searchBuildFullUrl } from '../app/search/searchMiddleware';
+import {
+  searchBuildFullUrl,
+  searchValidateAll
+} from '../app/search/searchMiddleware';
 import { SearchContextProvider } from '../contexts/SearchContext';
 import SearchValidation from '../components/search/SearchValidation';
 import SearchBar from '../components/search/SearchBar';
@@ -29,19 +32,30 @@ function Search() {
     switch (search.action) {
       case 'validation':
         // wait for validation trully finishing
-        setTimeout(
-          () => dispatch(searchAction('request')),
-          searchSettings['validationDelayMs']
-        );
+        setTimeout(() => {
+          if (searchValidateAll(search.formParams, search.formErrors)) {
+            // error after validaiton
+            dispatch(searchResetAction(true));
+          } else {
+            // call URL builder
+            dispatch(searchBuildUrl());
+          }
+        }, searchSettings['validationDelayMs']);
         break;
       case 'request':
         // set action default state
-        dispatch(searchAction(false));
+        dispatch(searchResetAction(false));
         // request data from GitHub if baseUrl, sort, order, per_page or page number has changed
         dispatch(getSearch(searchBuildFullUrl(search.queryParams)));
         break;
     }
-  }, [dispatch, search.action, search.queryParams]);
+  }, [
+    dispatch,
+    search.action,
+    search.queryParams,
+    search.formParams,
+    search.formErrors
+  ]);
 
   const searchResult = useMemo(
     () => (

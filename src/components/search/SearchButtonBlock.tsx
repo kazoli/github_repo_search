@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../app/general/hooks';
-import { searchAction, searchReset } from '../../app/search/searchSlice';
+import { searchValidation, searchReset } from '../../app/search/searchSlice';
 import { FcSearch } from 'react-icons/fc';
 import Button from '../form/Button';
 
@@ -12,7 +12,7 @@ function SearchButtonBlock() {
         wrapperClass="button click"
         icon={<FcSearch className="search-magnifier" />}
         label=""
-        action={() => dispatch(searchAction('validation'))}
+        action={() => dispatch(searchValidation())}
       />
       <Button
         wrapperClass="button click"
