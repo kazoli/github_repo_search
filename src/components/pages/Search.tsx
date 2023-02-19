@@ -1,18 +1,21 @@
 import { useEffect, useMemo } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/general/hooks';
-import { getSearch } from '../app/search/searchThunks';
-import { searchBuildUrl, searchResetAction } from '../app/search/searchSlice';
-import { searchSettings } from '../app/search/searchInitialStates';
+import { useAppDispatch, useAppSelector } from '../../app/general/hooks';
+import { getSearch } from '../../app/search/searchThunks';
+import {
+  searchBuildUrl,
+  searchResetAction
+} from '../../app/search/searchSlice';
+import { searchSettings } from '../../app/search/searchInitialStates';
 import {
   searchBuildFullUrl,
   searchValidateAll
-} from '../app/search/searchMiddleware';
+} from '../../app/search/searchMiddleware';
 import { SearchContextProvider } from '../contexts/SearchContext';
-import SearchValidation from '../components/search/SearchValidation';
-import SearchBar from '../components/search/SearchBar';
-import DefaultLayout from '../components/layout/DefaultLayout';
-import Spinner from '../components/general/Spinner';
-import SearchResult from '../components/search/SearchResult';
+import SearchValidation from '../search/SearchValidation';
+import SearchBar from '../search/SearchBar';
+import DefaultLayout from '../layout/DefaultLayout';
+import Spinner from '../general/Spinner';
+import SearchResult from '../search/SearchResult';
 
 function Search() {
   const dispatch = useAppDispatch();

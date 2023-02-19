@@ -1,7 +1,7 @@
 import { useAppDispatch } from '../../app/general/hooks';
 import { searchSetParam } from '../../app/search/searchSlice';
 import { tSearchReduxState } from '../../app/search/searchTypes';
-import { useSearchContext } from '../../contexts/SearchContext';
+import { useSearchContext } from '../contexts/SearchContext';
 import DatePicker from '../general/DatePicker';
 import ErrorMessage from '../general/ErrorMessage';
 import RadioBlock from '../form/RadioBlock';

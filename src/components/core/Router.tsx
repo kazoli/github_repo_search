@@ -1,12 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import JumpTop from '../components/general/JumpTop';
-import Search from './Search';
-import History from './History';
-import Page1 from './Page1';
-import Page2 from './Page2';
-import NotFound from './NotFound';
+import Search from '../pages/Search';
+import History from '../pages/History';
+import Page1 from '../pages/Page1';
+import Page2 from '../pages/Page2';
+import NotFound from '../pages/NotFound';
 
 function Router() {
   return (
@@ -18,8 +15,6 @@ function Router() {
         <Route path="/page2" element={<Page2 />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <JumpTop />
-      <ToastContainer autoClose={5000} />
     </BrowserRouter>
   );
 }

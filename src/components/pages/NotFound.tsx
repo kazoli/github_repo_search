@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DefaultLayout from '../components/layout/DefaultLayout';
+import DefaultLayout from '../layout/DefaultLayout';
 
 function NotFound() {
   useEffect(() => {

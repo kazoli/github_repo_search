@@ -1,7 +1,7 @@
 import { useAppDispatch } from '../../app/general/hooks';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { searchSetParam } from '../../app/search/searchSlice';
-import { useSearchContext } from '../../contexts/SearchContext';
+import { useSearchContext } from '../contexts/SearchContext';
 import Button from '../form/Button';
 import Checkable from '../form/Checkable';
 import Input from '../form/Input';

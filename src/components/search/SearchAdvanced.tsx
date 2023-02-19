@@ -6,7 +6,7 @@ import {
 import { useAppDispatch } from '../../app/general/hooks';
 import { searchSettings } from '../../app/search/searchInitialStates';
 import { searchManageTag, searchSetParam } from '../../app/search/searchSlice';
-import { useSearchContext } from '../../contexts/SearchContext';
+import { useSearchContext } from '../contexts/SearchContext';
 import Input from '../form/Input';
 import Tags from '../general/Tags';
 import SearchButtonBlock from './SearchButtonBlock';

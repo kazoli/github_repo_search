@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../app/general/hooks';
-import { searchSelectHistory } from '../app/search/searchSlice';
-import { scrollToElement } from '../app/general/useful';
-import DefaultLayout from '../components/layout/DefaultLayout';
-import SideMenuToogle from '../components/general/SideMenuToogle';
-import SearchResult from '../components/search/SearchResult';
+import { useAppDispatch, useAppSelector } from '../../app/general/hooks';
+import { searchSelectHistory } from '../../app/search/searchSlice';
+import { scrollToElement } from '../../app/general/useful';
+import DefaultLayout from '../layout/DefaultLayout';
+import SideMenuToogle from '../general/SideMenuToogle';
+import SearchResult from '../search/SearchResult';
 
 function History() {
   useEffect(() => {

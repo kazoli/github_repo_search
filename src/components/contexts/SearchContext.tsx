@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode } from 'react';
-import { tSearchReduxState } from '../app/search/searchTypes';
-import { initialSearchReduxState } from '../app/search/searchInitialStates';
+import { tSearchReduxState } from '../../app/search/searchTypes';
+import { initialSearchReduxState } from '../../app/search/searchInitialStates';
 
 // Type of search context
 type tSearchContext = {

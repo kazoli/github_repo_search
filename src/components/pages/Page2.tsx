@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import DefaultLayout from '../components/layout/DefaultLayout';
+import DefaultLayout from '../layout/DefaultLayout';
 
 function Page2() {
   useEffect(() => {
