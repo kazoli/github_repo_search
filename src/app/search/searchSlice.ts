@@ -3,6 +3,7 @@ import { getSearch } from './searchThunks';
 import { tSearchReduxState } from './searchTypes';
 import { initialSearchReduxState } from './searchInitialStates';
 import { searchBuildPartUrl } from './searchMiddleware';
+import { scrollToElement } from '../general/useful';
 
 const searchSlice = createSlice({
   name: 'search',
@@ -97,6 +98,7 @@ const searchSlice = createSlice({
           break;
         case 'page':
           state.queryParams.page = action.payload.value;
+          scrollToElement('smooth', 'center', '.search-result-frame');
           break;
       }
     },

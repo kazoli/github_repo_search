@@ -18,7 +18,11 @@ function History() {
   const toogle = () => {
     setShowMenu(!showMenu);
     if (showMenu)
-      scrollToElement('.search-history-query-list li:first-of-type');
+      scrollToElement(
+        'smooth',
+        'center',
+        '.search-history-query-list li:first-of-type'
+      );
   };
 
   return (
@@ -44,7 +48,10 @@ function History() {
                 {search.history.map((data, index) => (
                   <li
                     key={index}
-                    onClick={() => dispatch(searchSelectHistory(index))}
+                    onClick={() => {
+                      dispatch(searchSelectHistory(index));
+                      scrollToElement('smooth', 'start', 'html');
+                    }}
                   >
                     {data.query}
                   </li>

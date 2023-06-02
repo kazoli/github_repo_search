@@ -162,7 +162,7 @@ export const searchValidateAll = (
         formErrors.createdMin ||
         formErrors.createdMax))
   ) {
-    scrollToElement('.error-message:first-of-type');
+    scrollToElement('smooth', 'center', '.error-message:first-of-type');
     return true;
   } else {
     return false;
