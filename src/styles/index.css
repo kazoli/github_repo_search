@@ -279,7 +279,7 @@ main {
 /* FROM START */
 input:not([type='checkbox']):not([type='radio']) {
   flex: 1 1 auto;
-  padding: 2px 5px;
+  padding: 5px;
   overflow: hidden;
   border: none;
   border-radius: 2px;
@@ -296,8 +296,8 @@ input:not([type='checkbox']):not([type='radio']):focus {
 
 input[type='checkbox'],
 input[type='radio'] {
-  height: 1.4rem;
-  width: 1.4rem;
+  height: 1.15rem;
+  width: 1.15rem;
   margin: 0 3px 0 0;
   appearance: none;
   border-radius: 2px;
@@ -317,6 +317,7 @@ input[type='radio']:checked {
 
 input[type='checkbox']:checked {
   background: url('../utils/check_box_sign.png') no-repeat center center;
+  background-size: 0.85rem;
   background-color: #ffffff;
   box-shadow: 0 0 2px 0 #000000, inset 0 0 2px 0 #777777;
 }
@@ -360,6 +361,10 @@ input[type='checkbox']:checked {
 
 .form-checkable-block {
   gap: 5px 20px;
+}
+
+.form-checkable-block.centered {
+  padding: 5px 0;
 }
 
 .form-element > label,
@@ -593,7 +598,7 @@ footer {
 .search-row.wide .form-element-multiple {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px 20px;
+  gap: 10px 20px;
 }
 
 .search-row.wide .form-element-multiple .form-element-inline,
@@ -606,13 +611,14 @@ footer {
 }
 
 .search-row.wide .range-picker-wrapper .slider {
-  margin: 0.3rem 0 0 0;
+  display: flex;
+  align-self: center;
 }
 
 .search-row.wide .range-picker-wrapper .empty {
   color: #b0b0b0;
   flex: 1 1 auto;
-  padding: 2px 5px;
+  padding: 5px;
   border-radius: 2px;
   background: #fafafa;
   box-shadow: inset 0 0 5px 0 #e0e0e0, 0 0 2px 0 #a0a0a0;
@@ -655,7 +661,7 @@ footer {
 }
 
 .search-bar .date-picker {
-  padding: 1px 5px;
+  padding: 4px 5px;
   border-radius: 2px;
   background: #fafafa;
   box-shadow: inset 0 0 5px 0 #e0e0e0, 0 0 2px 0 #a0a0a0;

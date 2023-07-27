@@ -8,7 +8,9 @@ function Page1() {
 
   return (
     <DefaultLayout>
-      <section className="page-wrapper">Page 1</section>
+      <section className="page-wrapper">
+        Page 1 to demonstrate router works correctly
+      </section>
     </DefaultLayout>
   );
 }

@@ -42,7 +42,7 @@ function SearchBar() {
           <div className="form-element">
             <div className="form-checkable-wrapper">
               <label>Search in</label>
-              <div className="form-checkable-block">
+              <div className="form-checkable-block centered">
                 <Checkable
                   wrapperClass="form-checkable"
                   checked={search.formParams.inName}
