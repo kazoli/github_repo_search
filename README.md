@@ -27,7 +27,3 @@ https://kazoli.github.io/github_repo_search
 1. Use a command line, enter in the main folder and run this command: "npm run build"
 2. You may serve it with a static server by typing in command line and run: "serve -s build"
 3. App will start on that URL that static server will display in the command line
-
-#RUN TESTS
-
-1. Use a command line, enter in the main folder and run this command: "npm test"
