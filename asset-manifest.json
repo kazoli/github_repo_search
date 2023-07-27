@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/github_repo_search/static/css/main.cbd0e67e.css",
+    "main.js": "/github_repo_search/static/js/main.eb81cd2e.js",
+    "static/media/check_box_sign.png": "/github_repo_search/static/media/check_box_sign.affb20ce69147e1ec745.png",
+    "static/media/no_image.png": "/github_repo_search/static/media/no_image.7a3a714f9ea1611a6690.png",
+    "index.html": "/github_repo_search/index.html",
+    "main.cbd0e67e.css.map": "/github_repo_search/static/css/main.cbd0e67e.css.map",
+    "main.eb81cd2e.js.map": "/github_repo_search/static/js/main.eb81cd2e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cbd0e67e.css",
+    "static/js/main.eb81cd2e.js"
+  ]
+}
