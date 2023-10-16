@@ -195,12 +195,13 @@ main {
 }
 
 /* FIXME
-  if this error will be corrected these two can be deleted
+  if this error will be corrected these can be deleted
   https://github.com/wojtekmaj/react-date-picker/issues/425
  */
 .react-date-picker__calendar--open,
 .react-date-picker__calendar--closed {
   position: absolute;
+  height: 125px;
 }
 /* DATE PICKER END*/
 

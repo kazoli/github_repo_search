@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { scrollToElement } from '../../app/general/useful';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -6,6 +8,11 @@ type tProps = {
 };
 
 function DefaultLayout(props: tProps) {
+  useEffect(() => {
+    // scroll top in case of page change
+    scrollToElement();
+  }, []);
+
   return (
     <>
       <Header />

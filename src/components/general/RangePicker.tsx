@@ -1,9 +1,9 @@
-import * as React from 'react';
 import 'rc-tooltip/assets/bootstrap.css';
 import 'rc-slider/assets/index.css';
-import Slider from 'rc-slider';
+import * as React from 'react';
 import type { SliderProps } from 'rc-slider';
 import raf from 'rc-util/lib/raf';
+import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 
 const HandleTooltip = (props: {
@@ -29,7 +29,7 @@ const HandleTooltip = (props: {
 
   function keepAlign() {
     rafRef.current = raf(() => {
-      tooltipRef.current?.forcePopupAlign();
+      tooltipRef.current?.forceAlign();
     });
   }
 
