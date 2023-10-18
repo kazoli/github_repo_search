@@ -5,6 +5,8 @@ import { store } from '../app/general/store';
 import { BrowserRouter } from 'react-router-dom';
 import Search from '../components/pages/Search';
 
+HTMLElement.prototype.scrollIntoView = jest.fn();
+
 describe('Render search', () => {
   it('should render search correctly', () => {
     render(
