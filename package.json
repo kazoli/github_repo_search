@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "jest": {
+    "coveragePathIgnorePatterns": [
+      "/src/@types"
+    ],
     "transformIgnorePatterns": [
       "/node_modules/(?!(axios|react-toastify|react-date-picker|react-calendar|rc-slider|rc-tooltip)/)"
     ]
@@ -12,6 +15,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage --collectCoverageFrom='./src/**/*.{ts,tsx}' --watchAll=false",
     "eject": "react-scripts eject"
   },
   "dependencies": {
